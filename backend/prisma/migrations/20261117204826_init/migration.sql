@@ -30,7 +30,7 @@ CREATE TABLE `tenants` (
 
     UNIQUE INDEX `tenants_slug_key`(`slug`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `users` (
@@ -49,7 +49,7 @@ CREATE TABLE `users` (
     UNIQUE INDEX `users_email_key`(`email`),
     INDEX `users_tenantId_idx`(`tenantId`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `sessions` (
@@ -68,7 +68,7 @@ CREATE TABLE `sessions` (
     INDEX `sessions_userId_idx`(`userId`),
     INDEX `sessions_familyId_idx`(`familyId`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `counters` (
@@ -77,7 +77,7 @@ CREATE TABLE `counters` (
     `value` INTEGER NOT NULL DEFAULT 0,
 
     PRIMARY KEY (`tenantId`, `key`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `clients` (
@@ -96,7 +96,7 @@ CREATE TABLE `clients` (
 
     INDEX `clients_tenantId_name_idx`(`tenantId`, `name`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `suppliers` (
@@ -116,7 +116,7 @@ CREATE TABLE `suppliers` (
 
     INDEX `suppliers_tenantId_name_idx`(`tenantId`, `name`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `products` (
@@ -139,7 +139,7 @@ CREATE TABLE `products` (
     INDEX `products_tenantId_name_idx`(`tenantId`, `name`),
     UNIQUE INDEX `products_tenantId_ref_key`(`tenantId`, `ref`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `documents` (
@@ -170,7 +170,7 @@ CREATE TABLE `documents` (
     INDEX `documents_sourceId_idx`(`sourceId`),
     UNIQUE INDEX `documents_tenantId_type_number_key`(`tenantId`, `type`, `number`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `document_lines` (
@@ -188,7 +188,7 @@ CREATE TABLE `document_lines` (
     INDEX `document_lines_documentId_idx`(`documentId`),
     INDEX `document_lines_productId_idx`(`productId`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `payments` (
@@ -205,7 +205,7 @@ CREATE TABLE `payments` (
     INDEX `payments_tenantId_date_idx`(`tenantId`, `date`),
     INDEX `payments_documentId_idx`(`documentId`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `expenses` (
@@ -223,7 +223,7 @@ CREATE TABLE `expenses` (
 
     INDEX `expenses_tenantId_date_idx`(`tenantId`, `date`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `cash_ops` (
@@ -238,7 +238,7 @@ CREATE TABLE `cash_ops` (
 
     INDEX `cash_ops_tenantId_date_idx`(`tenantId`, `date`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `stock_movements` (
@@ -255,7 +255,7 @@ CREATE TABLE `stock_movements` (
     INDEX `stock_movements_tenantId_date_idx`(`tenantId`, `date`),
     INDEX `stock_movements_productId_date_idx`(`productId`, `date`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `activities` (
@@ -269,7 +269,7 @@ CREATE TABLE `activities` (
 
     INDEX `activities_tenantId_createdAt_idx`(`tenantId`, `createdAt`),
     PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
 ALTER TABLE `users` ADD CONSTRAINT `users_tenantId_fkey` FOREIGN KEY (`tenantId`) REFERENCES `tenants`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
