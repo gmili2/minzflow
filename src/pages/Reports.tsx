@@ -61,11 +61,11 @@ export default function Reports() {
           </div>
           <div className="grid2">
             <section className="card">
-              <div className="card-h"><h2><Icon name="chart" color="#10B981" />CA et charges HT par mois</h2><div className="legend"><span><span className="dot" style={{ background: '#10B981' }} />CA HT</span><span><span className="dot" style={{ background: '#2F80ED' }} />Achats + dépenses HT</span></div></div>
+              <div className="card-h"><h2><Icon name="chart" color="var(--brand)" />CA et charges HT par mois</h2><div className="legend"><span><span className="dot" style={{ background: 'var(--brand)' }} />CA HT</span><span><span className="dot" style={{ background: '#2F80ED' }} />Achats + dépenses HT</span></div></div>
               <Bars labels={r.rows.map((x) => x.short)} a={r.rows.map((x) => x.caHT)} b={r.rows.map((x) => x.achHT + x.depHT)} aLabel="CA HT" bLabel="Charges HT" />
             </section>
             <section className="card">
-              <div className="card-h"><h2><Icon name="calc" color="#10B981" />TVA de la période</h2></div>
+              <div className="card-h"><h2><Icon name="calc" color="var(--brand)" />TVA de la période</h2></div>
               <div className="totals">
                 <div><span>TVA collectée (factures)</span><b>{dh(r.totals.tvaColl)}</b></div>
                 <div><span>TVA déductible (achats, dépenses)</span><b>{dh(r.totals.tvaDed)}</b></div>

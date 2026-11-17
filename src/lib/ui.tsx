@@ -47,7 +47,7 @@ export const ICONS: Record<string, string> = {
 
 export function Icon({ name, size = 20, stroke = 2, color }: { name: string; size?: number; stroke?: number; color?: string }) {
   return (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color ?? 'currentColor'} strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" style={color ? { stroke: color } : undefined} strokeWidth={stroke} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d={ICONS[name] ?? ''} />
     </svg>
   );

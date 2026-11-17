@@ -72,7 +72,7 @@ export default function Settings() {
         </section>
       </div>
       <section className="card">
-        <div className="card-h"><h2><Icon name="building" color="#10B981" />Fiche société</h2>{!admin && <span className="muted" style={{ fontSize: 13 }}>Seul un administrateur peut la modifier.</span>}</div>
+        <div className="card-h"><h2><Icon name="building" color="var(--brand)" />Fiche société</h2>{!admin && <span className="muted" style={{ fontSize: 13 }}>Seul un administrateur peut la modifier.</span>}</div>
         {!f || !co ? <Spinner /> : (
           <>
             <div style={{ display: 'flex', gap: 16, alignItems: 'center', marginBottom: 18, flexWrap: 'wrap' }}>

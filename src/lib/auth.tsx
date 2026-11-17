@@ -18,6 +18,7 @@ export function applyBrand(color: string | undefined) {
   r.setProperty('--brand', c);
   r.setProperty('--brand-dark', shade(c, -0.18));
   r.setProperty('--brand-soft', shade(c, 0.78));
+  r.setProperty('--brand-tint', c + '1A');
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {

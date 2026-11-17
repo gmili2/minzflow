@@ -101,7 +101,7 @@ export default function TenantForm() {
             <section className="card"><CompanyFields f={f} set={setF} /></section>
             {!id ? (
               <section className="card">
-                <div className="card-h"><h2><Icon name="shield" color="#10B981" />Compte administrateur de l’entreprise</h2></div>
+                <div className="card-h"><h2><Icon name="shield" color="var(--brand)" />Compte administrateur de l’entreprise</h2></div>
                 <div className="form">
                   <label className="fld">Nom complet *<input className="inp" value={admin.name} onChange={(e) => setAdmin({ ...admin, name: e.target.value })} /></label>
                   <label className="fld">Email de connexion *<input className="inp" type="email" value={admin.email} onChange={(e) => setAdmin({ ...admin, email: e.target.value })} /></label>

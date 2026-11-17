@@ -32,7 +32,7 @@ export default function Dashboard() {
   const hour = new Date().getHours();
   const hello = hour < 18 ? 'Bonjour' : 'Bonsoir';
   const kdefs = [
-    { k: 'ca' as const, label: 'Chiffre d’affaires', money: true, icon: 'chart', color: '#0E9F6E', soft: '#DCFCE7', dark: '#166534', to: '/factures', mod: 'factures' },
+    { k: 'ca' as const, label: 'Chiffre d’affaires', money: true, icon: 'chart', color: 'var(--brand)', soft: 'var(--brand-soft)', dark: 'var(--brand-dark)', to: '/factures', mod: 'factures' },
     { k: 'dep' as const, label: 'Dépenses et achats', money: true, icon: 'wallet', color: '#2F80ED', soft: '#DBEAFE', dark: '#1E40AF', to: '/depenses', mod: 'depenses' },
     { k: 'paid' as const, label: 'Factures payées', money: false, icon: 'facture', color: '#8B5CF6', soft: '#EDE9FE', dark: '#5B21B6', to: '/factures?f=PAYEE', mod: 'factures' },
     { k: 'pend' as const, label: 'En attente', money: false, icon: 'hourglass', color: '#F59E0B', soft: '#FFEDD5', dark: '#9A3412', to: '/factures?f=IMPAYEES', mod: 'factures' },
@@ -74,13 +74,13 @@ export default function Dashboard() {
           <div className="grid2">
             <section className="card">
               <div className="card-h">
-                <h2><Icon name="chart" color="#10B981" />Évolution de votre activité</h2>
-                <div className="legend"><span><span className="dot" style={{ background: '#10B981' }} />Chiffre d'affaires</span><span><span className="dot" style={{ background: '#2F80ED' }} />Dépenses et achats</span></div>
+                <h2><Icon name="chart" color="var(--brand)" />Évolution de votre activité</h2>
+                <div className="legend"><span><span className="dot" style={{ background: 'var(--brand)' }} />Chiffre d'affaires</span><span><span className="dot" style={{ background: '#2F80ED' }} />Dépenses et achats</span></div>
               </div>
               <LineChart labels={data.months.map((m) => m.label)} longLabels={data.months.map((m) => m.long)} a={data.series.ca} b={data.series.dep} aLabel="CA" bLabel="Dépenses" />
             </section>
             <section className="card">
-              <div className="card-h"><h2><Icon name="pie" color="#10B981" />Répartition des charges</h2></div>
+              <div className="card-h"><h2><Icon name="pie" color="var(--brand)" />Répartition des charges</h2></div>
               <Donut items={data.breakdown} total={data.breakdown.reduce((s, b) => s + b.value, 0)} />
             </section>
           </div>
@@ -88,7 +88,7 @@ export default function Dashboard() {
           <div className="grid2">
             <section className="card">
               <div className="card-h">
-                <h2><Icon name="facture" color="#10B981" />Factures récentes</h2>
+                <h2><Icon name="facture" color="var(--brand)" />Factures récentes</h2>
                 {can('factures') && <button className="link-btn" onClick={() => nav('/factures')}>Voir toutes les factures <Icon name="right" size={16} /></button>}
               </div>
               <div className="tbl">
@@ -103,7 +103,7 @@ export default function Dashboard() {
             </section>
             <section className="card">
               <div className="card-h">
-                <h2><Icon name="zap" color="#10B981" />Activité récente</h2>
+                <h2><Icon name="zap" color="var(--brand)" />Activité récente</h2>
                 {data.activity.length > 6 && <button className="link-btn" onClick={() => setAllAct(!allAct)}>{allAct ? 'Réduire' : 'Voir tout'} <Icon name={allAct ? 'up' : 'right'} size={16} /></button>}
               </div>
               {data.activity.length ? data.activity.slice(0, allAct ? 30 : 6).map((a) => {

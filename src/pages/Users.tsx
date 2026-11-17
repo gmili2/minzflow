@@ -60,7 +60,7 @@ export default function Users() {
           )}
         </section>
         <section className="card">
-          <div className="card-h"><h2><Icon name="shield" color="#10B981" />Rôles</h2></div>
+          <div className="card-h"><h2><Icon name="shield" color="var(--brand)" />Rôles</h2></div>
           {Object.entries(DESC).map(([r, d]) => <div key={r} className="role-row"><Pill label={ROLES[r]} cls={ROLE_CLS[r]} /><span className="muted">{d}</span></div>)}
         </section>
       </div>

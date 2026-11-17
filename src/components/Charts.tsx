@@ -26,8 +26,8 @@ export function Spark({ series, color }: { series: number[]; color: string }) {
   const line = smooth(pts);
   return (
     <svg className="spark" viewBox="0 0 130 48" aria-hidden="true">
-      <path d={line + ' L130 48 L0 48 Z'} fill={color} opacity=".14" />
-      <path d={line} fill="none" stroke={color} strokeWidth="2.2" />
+      <path d={line + ' L130 48 L0 48 Z'} style={{ fill: color }} opacity=".14" />
+      <path d={line} fill="none" style={{ stroke: color }} strokeWidth="2.2" />
     </svg>
   );
 }
@@ -55,12 +55,12 @@ export function LineChart({ labels, longLabels, a, b, aLabel, bLabel }: { labels
     <div className="chart" onMouseLeave={() => setHv(n - 1)}>
       <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${aLabel} et ${bLabel} par mois`}>
         <path className="gl" d={grid} strokeWidth="1" fill="none" />
-        <path d={`${al} L${xs[n - 1]} ${base} L${xs[0]} ${base} Z`} fill="#10B981" opacity=".12" />
+        <path d={`${al} L${xs[n - 1]} ${base} L${xs[0]} ${base} Z`} style={{ fill: 'var(--brand)' }} opacity=".12" />
         <path d={`${bl} L${xs[n - 1]} ${base} L${xs[0]} ${base} Z`} fill="#2F80ED" opacity=".1" />
-        <path d={al} fill="none" stroke="#10B981" strokeWidth="3" />
+        <path d={al} fill="none" style={{ stroke: 'var(--brand)' }} strokeWidth="3" />
         <path d={bl} fill="none" stroke="#2F80ED" strokeWidth="3" />
         {hv != null && <path d={`M${xs[hv]} ${pt} V${base}`} stroke="var(--muted)" strokeDasharray="3 3" />}
-        {ap.map((p, i) => <circle key={'a' + i} cx={p[0]} cy={p[1]} r="4.5" fill="#10B981" className="halo" strokeWidth="2" />)}
+        {ap.map((p, i) => <circle key={'a' + i} cx={p[0]} cy={p[1]} r="4.5" style={{ fill: 'var(--brand)' }} className="halo" strokeWidth="2" />)}
         {bp.map((p, i) => <circle key={'b' + i} cx={p[0]} cy={p[1]} r="4.5" fill="#2F80ED" className="halo" strokeWidth="2" />)}
       </svg>
       {ylab.map((y, i) => <span key={i} className="ylab" style={{ top: y.top }}>{y.label}</span>)}
@@ -73,7 +73,7 @@ export function LineChart({ labels, longLabels, a, b, aLabel, bLabel }: { labels
       {hv != null && (
         <div className="tip" style={{ left: Math.min(Math.max((xs[hv] / W) * 100, 16), 84) + '%', top: (Math.min(ap[hv][1], bp[hv][1]) / H) * 100 + '%' }}>
           <b>{longLabels[hv]}</b><br />
-          <span className="dot" style={{ background: '#10B981' }} />{aLabel} : <b>{dh0(a[hv])}</b><br />
+          <span className="dot" style={{ background: 'var(--brand)' }} />{aLabel} : <b>{dh0(a[hv])}</b><br />
           <span className="dot" style={{ background: '#2F80ED' }} />{bLabel} : <b>{dh0(b[hv])}</b>
         </div>
       )}
@@ -122,7 +122,7 @@ export function Bars({ labels, a, b, aLabel, bLabel }: { labels: string[]; a: nu
           const cx = 10 + slot * i + slot / 2, ha = (a[i] / max) * 170, hb = (b[i] / max) * 170;
           return (
             <g key={i}>
-              <rect x={cx - bw - 1} y={base - ha} width={bw} height={ha} rx="3" fill="#10B981"><title>{`${l} — ${aLabel} : ${dh0(a[i])}`}</title></rect>
+              <rect x={cx - bw - 1} y={base - ha} width={bw} height={ha} rx="3" style={{ fill: 'var(--brand)' }}><title>{`${l} — ${aLabel} : ${dh0(a[i])}`}</title></rect>
               <rect x={cx + 1} y={base - hb} width={bw} height={hb} rx="3" fill="#2F80ED"><title>{`${l} — ${bLabel} : ${dh0(b[i])}`}</title></rect>
               <text x={cx} y={base + 18} textAnchor="middle" fontSize="12" fill="var(--text2)">{l}</text>
             </g>
