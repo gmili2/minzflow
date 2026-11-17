@@ -1,0 +1,17 @@
+# Base locale identique à l'hébergement Namecheap (MariaDB 11.4).
+services:
+  mariadb:
+    image: mariadb:11.4
+    restart: unless-stopped
+    environment:
+      MARIADB_DATABASE: minzflow
+      MARIADB_USER: minzflow
+      MARIADB_PASSWORD: minzflow
+      MARIADB_ROOT_PASSWORD: minzflow-root
+    command: ["--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+    ports:
+      - "3310:3306"
+    volumes:
+      - mariadb:/var/lib/mysql
+volumes:
+  mariadb:
