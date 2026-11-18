@@ -8,7 +8,8 @@ import { Icon } from '../lib/ui';
 type Notif = { kind: string; title: string; sub: string; page: string; id?: string };
 type Hit = { kind: string; id: string; title: string; sub: string; page: string };
 
-const NAV: { id: string; label: string; icon: string; path?: string; kids?: { id: string; label: string; icon: string; path: string }[] }[] = [
+/** hidden: entrée masquée du menu (la page reste accessible par son adresse). Retirer `hidden` pour la réafficher. */
+const NAV: { id: string; label: string; icon: string; path?: string; hidden?: boolean; kids?: { id: string; label: string; icon: string; path: string }[] }[] = [
   { id: 'dashboard', label: 'Tableau de bord', icon: 'grid', path: '/' },
   { id: 'ventes', label: 'Ventes', icon: 'store', kids: [
     { id: 'devis', label: 'Devis', icon: 'devis', path: '/devis' },
@@ -17,16 +18,16 @@ const NAV: { id: string; label: string; icon: string; path?: string; kids?: { id
   ] },
   { id: 'achats', label: 'Achats', icon: 'bag', path: '/achats' },
   { id: 'stocks', label: 'Stocks', icon: 'box', path: '/stocks' },
-  { id: 'clients', label: 'Clients', icon: 'users', path: '/clients' },
-  { id: 'fournisseurs', label: 'Fournisseurs', icon: 'truck', path: '/fournisseurs' },
-  { id: 'compta', label: 'Comptabilité', icon: 'calc', kids: [
+  { id: 'clients', label: 'Clients', icon: 'users', path: '/clients', hidden: true },
+  { id: 'fournisseurs', label: 'Fournisseurs', icon: 'truck', path: '/fournisseurs', hidden: true },
+  { id: 'compta', label: 'Comptabilité', icon: 'calc', hidden: true, kids: [
     { id: 'caisse', label: 'Trésorerie', icon: 'cash', path: '/caisse' },
     { id: 'depenses', label: 'Dépenses', icon: 'wallet', path: '/depenses' },
     { id: 'rapports', label: 'Bilan', icon: 'pie', path: '/bilan' },
   ] },
-  { id: 'utilisateurs', label: 'Utilisateurs', icon: 'shield', path: '/utilisateurs' },
-  { id: 'assistant', label: 'Assistant IA', icon: 'spark', path: '/assistant' },
-  { id: 'parametres', label: 'Paramètres', icon: 'settings', path: '/parametres' },
+  { id: 'utilisateurs', label: 'Utilisateurs', icon: 'shield', path: '/utilisateurs', hidden: true },
+  { id: 'assistant', label: 'Assistant IA', icon: 'spark', path: '/assistant', hidden: true },
+  { id: 'parametres', label: 'Paramètres', icon: 'settings', path: '/parametres', hidden: true },
 ];
 const PATHS: Record<string, string> = { devis: '/devis', bons: '/bons', factures: '/factures', achats: '/achats', stocks: '/stocks', clients: '/clients', fournisseurs: '/fournisseurs' };
 const KIND_ICON: Record<string, string> = { retard: 'hourglass', stock: 'box', bl: 'cart', devis: 'devis' };
@@ -96,7 +97,7 @@ export default function Shell({ theme, setTheme }: { theme: 'light' | 'dark'; se
           <span className="brand-name" title={me.tenant?.name}>{me.tenant?.name ?? 'MizanFlow'}</span>
         </div>
         <nav className="nav">
-          {NAV.map((n) => {
+          {NAV.filter((n) => !n.hidden).map((n) => {
             if (n.kids) {
               const kids = n.kids.filter((k) => allowed(k.id));
               if (!kids.length) return null;
